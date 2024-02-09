@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <!-- Ensure your CSS path is correct -->
+    <link href="/style/register-page.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="box center">
+      <h1 style="margin: auto; width: 24%; padding: 30px">Register</h1>
+      <div class="display-video">
+        <div class="media-container">
+          <video id="video" width="300" height="200" autoplay></video>
+          <div id="dataurl-container">
+            <canvas
+              style="border: 1px solid #000000"
+              id="canvas"
+              width="260"
+              height="200"
+            ></canvas>
+          </div>
+        </div>
+        <div
+          id="images-container"
+          style="display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px"
+        ></div>
+      </div>
+      <form
+        id="userForm"
+        style="display: flex; flex-direction: column; align-items: center"
+      >
+        <input
+          type="text"
+          id="userName"
+          placeholder="Enter name"
+          style="margin: 10px; padding: 8px; width: 90%"
+        />
+        <button class="center-item" id="btn-start-camera" type="button">
+          Start Camera
+        </button>
+        <button class="center-item" id="take-snapshot" type="button">
+          Take Snapshot
+        </button>
+        <button class="center-item" type="submit">Submit</button>
+      </form>
+    </div>
+    <script>
+      let capturedImages = []; // Array to store captured images
+
+      document
+        .getElementById("take-snapshot")
+        .addEventListener("click", function () {
+          const canvas = document.getElementById("canvas");
+          const context = canvas.getContext("2d");
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+          let imageDataUrl = canvas.toDataURL("image/jpeg");
+          capturedImages.push(imageDataUrl); // Store image data URL in array
+
+          // Display the captured image
+          let imageElement = document.createElement("img");
+          imageElement.src = imageDataUrl;
+          imageElement.style.width = "100px"; // Set a fixed size for display
+          document.getElementById("images-container").appendChild(imageElement); // Display captured images
+        });
+
+      document
+        .getElementById("userForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("userName").value;
+          if (!name.trim() || capturedImages.length === 0) {
+            alert("Please enter a name and take at least one snapshot.");
+            return;
+          }
+
+          fetch("http://localhost:5000/add-user-and-image", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: name, image: capturedImages }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+              alert("User and images submitted successfully");
+              // Reset the form and captured images after successful submission
+              document.getElementById("userName").value = "";
+              capturedImages = [];
+              document.getElementById("images-container").innerHTML = "";
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Failed to submit user and images");
+            });
+        });
+
+      let video = document.getElementById("video");
+      let btn_start_camera = document.getElementById("btn-start-camera");
+      let btn_take_snapshot = document.getElementById("take-snapshot");
+
+      btn_start_camera.addEventListener("click", async function () {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: true,
+            audio: false,
+          });
+          video.srcObject = stream;
+          video.style.display = "block";
+          btn_start_camera.style.display = "none";
+          btn_take_snapshot.style.display = "block";
+        } catch (error) {
+          alert(error.message);
+        }
+      });
+    </script>
+  </body>
+</html>

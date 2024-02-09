@@ -1,0 +1,73 @@
+canvas {
+  position: absolute;
+}
+
+.center {
+  margin: auto;
+  width: 30%;
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+.center-item {
+  margin: auto;
+  width: 30%;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #ffffff;
+}
+button {
+  width: 120px;
+  padding: 10px;
+  display: block;
+  border: 3px solid #000000;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: white;
+}
+
+#take-snapshot {
+  display: none;
+}
+
+#dataurl-container {
+  display: none; /* Initially hide, will be shown after snapshot */
+}
+
+.box {
+  width: 600px;
+  height: 500px;
+}
+
+#dataurl {
+  display: none;
+  height: 100px;
+  width: 320px;
+
+  resize: none;
+  outline: none;
+  border: 1px solid #111111;
+  padding: 5px;
+  font-size: 13px;
+  box-sizing: border-box;
+}
+
+.media-container {
+  display: flex;
+  margin: 10px;
+  margin-bottom: 50px;
+
+  width: 300px;
+  height: 200px;
+}
+
+#video {
+  display: none; /* Initially hide the video, it will be shown when the camera starts */
+}

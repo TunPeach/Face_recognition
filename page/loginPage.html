@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script defer src="/face-api.min.js"></script>
+    <script defer src="/script.js"></script>
+    <link rel="stylesheet" href="/style/style.css" />
+    <link href="/style/login-page.css" rel="stylesheet" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div class="register-page-container">
+        <div class="register-page-container1">
+          <div class="register-page-container2">
+            <h1 class="register-page-text">Login</h1>
+            <video id="video" width="600" height="450" autoplay></video>
+            <button type="button" class="register-page-register button">
+              <span>
+                <span>Capture &amp; Submit</span>
+                <br />
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<!-- 
+<script>
+  async function fetchData() {
+    const response = await fetch("http://localhost:5000/");
+    const text = await response.text(); // First get the response as text
+    // console.log(text); // Check what the actual response is
+    // If the response is JSON, then parse it
+    const data = JSON.parse(text);
+    //console.log(data[2].image);
+    const image1 = data[2].image;
+    //for (let i = 0; i < data.length; i++) {
+    //console.log( data[i]);
+    //const image1 = data[i];
+
+    console.log(typeof image1);
+    // }
+    //console.log(typeof image1);
+    //document.getElementById("imageDisplay").src = image1;
+  }
+
+  fetchData();
+</script> -->

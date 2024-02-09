@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet" />
+
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Screen</title>
+</head>
+
+<body>
+  <div class="login-container center">
+    <h1>Sign in</h1>
+    <a href="/page/loginPage.html" style="text-decoration:none">
+      <button type="submit" class="login-face-recognition center">
+        <span class="bottom-text">Face Recognition</span>
+        <!-- This is your bottom text -->
+      </button>
+    </a>
+    <div class="divider">
+      <hr class="line" />
+      <span class="or-text">or</span>
+      <hr class="line" />
+    </div>
+    <form id="login-form">
+      <input class="textfield" type="email" id="email" placeholder="Email" required />
+      <div class="password-container">
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+      <button type="submit" class="login-btn">
+        <span style="font-weight: bold">Log in</span>
+      </button>
+    </form>
+    <div class="links">
+      <a href="#" class="link">Reset password</a>
+      <a href="/page/registerPage.html" class="link">Create new accout</a>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<style>
+  /* styles.css */
+
+  .login-face-recognition {
+    display: flex;
+    /* Enables flexbox */
+    align-items: center;
+    /* Vertically centers the flex items */
+    justify-content: center;
+    /* Horizontally centers the flex items */
+    gap: 10px;
+    /* Optional: adds space between the icon and text */
+  }
+
+  body {
+    font-family: "Inter", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+  }
+
+  .textfield {
+    border: 3px#333;
+  }
+
+  .login-container {
+    width: 300px;
+    padding: 200px;
+    background-color: #ffffff;
+    /* border: 1px solid #ddd;*/
+    text-align: center;
+  }
+
+  .center {
+    margin: auto;
+    width: 30%;
+    border: 3px solid rgb(0, 0, 0);
+    border-radius: 5px;
+    padding: 100px;
+  }
+
+  h1 {
+    margin-bottom: 50px;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .line {
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .or-text {
+    padding: 0 10px;
+  }
+
+  input[type="email"],
+  input[type="password"] {
+    width: calc(80% - 20px);
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 3px solid #000000;
+    border-radius: 5px;
+  }
+
+  .login-face-recognition img {
+    /* Ensure the image is centered; this might be redundant with flex properties */
+    margin: 0;
+    display: block;
+  }
+
+  .login-face-recognition .bottom-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    /* Smaller font size for the bottom text */
+    color: #000000;
+    /* Dim color for the bottom text, adjust as needed */
+  }
+
+  .login-face-recognition {
+    width: calc(80% - 20px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 3px solid #000000;
+    border-radius: 5px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+  }
+
+  .login-btn {
+    width: calc(80% - 20px);
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+  }
+
+  .links {
+    display: flex;
+    justify-content: space-around;
+    /* Adjusts the spacing between the links */
+    align-items: center;
+    /* Aligns items vertically in the center, if needed */
+    margin-top: 20px;
+  }
+
+  .link {
+    color: #000000;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+    font-size: small;
+  }
+
+  #imageFace {
+    width: 25px;
+    padding-right: 10px;
+  }
+
+  .password-icon {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+</style>
+
+<script>
+  // Wrap the code inside DOMContentLoaded event listener
+  document.addEventListener("DOMContentLoaded", function() {
+    // Add event listener for the form submission
+    document.getElementById("login-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      // You can add authentication logic here
+      alert("Login button clicked!");
+    });
+
+    // Add event listener for toggling password visibility
+    document.getElementById("togglePassword").addEventListener("click", function(e) {
+      const passwordInput = document.getElementById("password");
+      const isPasswordVisible = passwordInput.getAttribute("type") === "password";
+      passwordInput.setAttribute("type", isPasswordVisible ? "text" : "password");
+      this.classList.toggle("fa-eye-slash");
+    });
+  });
+</script>

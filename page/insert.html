@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Beer Catalog</title>
+</head>
+<body>
+    <h1>Beer Catalog</h1>
+
+    <!-- Form to Add or Update Beer -->
+    <form id="beerForm">
+        <input type="hidden" id="beerId" /> <!-- Hidden input for updating -->
+        <input type="text" id="beerImage" placeholder="Image URL" />
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <!-- Display Beer Data -->
+    <div id="beerData"></div>
+
+    <script src="/server.js"></script>
+</body>
+</html>
